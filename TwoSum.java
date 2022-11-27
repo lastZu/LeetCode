@@ -36,7 +36,7 @@ import java.util.Map;
  */
 
 public class TwoSum {
-    public static int[] twoSumWithSort(int[] nums, int target) {
+    public static int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> halfOfTarget = new HashMap<>();
         int[] result = {};
         for (int i = 0; i < nums.length; i++) {
