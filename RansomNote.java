@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
@@ -36,6 +37,10 @@ public class RansomNote {
             Integer count = frequency.getOrDefault(letter, 0);
             frequency.put(letter, count + 1);
         }
+//        var m = magazine
+//                .chars()
+//                .mapToObj(i -> (char) i)
+//                .collect(Collectors.groupingBy(x -> x, Collectors.counting()));
         char[] requiredLetters = ransomNote.toCharArray();
         for (char letter : requiredLetters) {
             Integer count = frequency.getOrDefault(letter, 0);
