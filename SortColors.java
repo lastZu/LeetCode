@@ -29,22 +29,21 @@
 public class SortColors { // 1 0 2 2 0 1
     public void sortColors(int[] nums) {
         if (nums.length == 1) return;
+        int[] colorsCount = new int[3];
 
-        int left = 0;
-        int right = left + 1;
-        while (right < nums.length) {
-            if (nums[left] > nums[right]) {
-                changePlace(nums, left, right);
-                left++;
-                right = left;
-            }
-            right++;
+        for (int i = 0; i < nums.length; i++) {
+            colorsCount[nums[i]]++;
+        }
+        int position = 0;
+        for (int i = 0; i < colorsCount.length; i++) {
+            setColor(nums, position, colorsCount[i], i);
+            position += colorsCount[i];
         }
     }
 
-    private static void changePlace(int[] nums, int left, int right) {
-        int temp = nums[left];
-        nums[left] = nums[right];
-        nums[right] = temp;
+    private static void setColor(int[] nums, int startPosition, int count, int color) {
+        for (int i = 0; i < count; i++) {
+            nums[startPosition + i] = color;
+        }
     }
 }
