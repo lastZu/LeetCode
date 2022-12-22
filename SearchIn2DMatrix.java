@@ -40,5 +40,4 @@ public class SearchIn2DMatrix {
         }
         return false;
     }
-
 }
