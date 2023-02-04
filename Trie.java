@@ -26,16 +26,10 @@ import java.util.Map;
  * boolean param_3 = obj.startsWith(prefix);
  */
 class Trie {
-    private final char letter;
     private boolean end;
     private final Map<Character, Trie> nextLetters;
 
     public Trie() {
-        this('/');
-    }
-
-    private Trie(char ch) {
-        letter = ch;
         nextLetters = new HashMap<>();
     }
 
@@ -44,7 +38,7 @@ class Trie {
         for (char ch : word.toCharArray()) {
             Trie nextTrie = step.nextLetters.get(ch);
             if (nextTrie == null) {
-                nextTrie = new Trie(ch);
+                nextTrie = new Trie();
                 step.nextLetters.put(ch, nextTrie);
             }
             step = nextTrie;
@@ -55,11 +49,10 @@ class Trie {
     public boolean search(String word) {
         Trie step = this;
         for (char ch : word.toCharArray()) {
-            Trie nextTrie = step.nextLetters.get(ch);
-            if (nextTrie == null) {
+            step = step.nextLetters.get(ch);
+            if (step == null) {
                 return false;
             }
-            step = nextTrie;
         }
         return step.end;
     }
@@ -67,11 +60,10 @@ class Trie {
     public boolean startsWith(String prefix) {
         Trie step = this;
         for (char ch : prefix.toCharArray()) {
-            Trie nextTrie = step.nextLetters.get(ch);
-            if (nextTrie == null) {
+            step = step.nextLetters.get(ch);
+            if (step == null) {
                 return false;
             }
-            step = nextTrie;
         }
         return true;
     }
