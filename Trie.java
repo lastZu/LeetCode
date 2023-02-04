@@ -26,9 +26,9 @@ import java.util.Map;
  * boolean param_3 = obj.startsWith(prefix);
  */
 class Trie {
-    private char letter;
+    private final char letter;
     private boolean end;
-    private Map<Character, Trie> nextLetters;
+    private final Map<Character, Trie> nextLetters;
 
     public Trie() {
         this('/');
@@ -61,10 +61,7 @@ class Trie {
             }
             step = nextTrie;
         }
-        if (step.end) {
-            return true;
-        }
-        return false;
+        return step.end;
     }
 
     public boolean startsWith(String prefix) {
